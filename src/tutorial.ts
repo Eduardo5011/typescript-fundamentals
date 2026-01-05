@@ -100,13 +100,106 @@
 // let items: {readonly title: string; cost?: number }[] = [book, pen, notebook];
 // // items[0].title = "new book"; readonly
 
-let bike: { brand: string; year: number } = { brand: "yamaha", year: 2021 };
+// let bike: { brand: string; year: number } = { brand: "yamaha", year: 2021 };
 
-let laptop: { brand: string; year: number } = { brand: "Dell", year: 2020 };
+// let laptop: { brand: string; year: number } = { brand: "Dell", year: 2020 };
+
+// let product1 = { title: "shirt", price: 20 };
+// let product2 = { title: "pants" };
+// let products: { title: string; price?: number }[] = [product1, product2];
+
+// products.push({ title: "hat", price: 15 });
+
+// // FUNCTIONS PARAMS AND FUNCTION RETURNS
+
+// function sayHi(name: string) {
+//   console.log(`Hello there ${name.toUpperCase()}`);
+// }
+
+// sayHi("John");
+
+// FUNCTION RETURNS
+
+// function calculateDiscount(price: number): number {
+//   const hasDiscount = true;
+
+//   if (hasDiscount) {
+//     return price;
+//   }
+//   return price * 0.9;
+// }
+
+// const finalPrice = calculateDiscount(200);
+
+// const names: string[] = ["Alice", "Bob", "Charlie", "Jim"];
+
+// function isNameInList(name: string): boolean {
+//   return names.includes(name);
+// }
+
+// let nameToCheck = "Alice";
+
+// if (isNameInList(nameToCheck)) {
+//   console.log(`${nameToCheck} is in the list.`);
+// } else {
+//   console.log(`${nameToCheck} is not in the list.`);
+// }
+
+// OPTIONAL< DEFAULT AND REST PARAMETERS
+
+// function calculatePrice(price: number, discount: number): number {
+//   return price - (discount || 0);
+// }
+
+// let priceAfterDiscount = calculatePrice(100, 20);
+
+// function calculateScore(
+//   initialScore: number,
+//   penaltyPoints: number = 0
+// ): number {
+//   return initialScore - penaltyPoints;
+// }
+
+// let scoreAfterPenalty = calculateScore(100, 15);
+// let scoreWithoutPenalty = calculateScore(300);
 
 
-let product1 = {title:'shirt', price:20}
-let product2 = {title:'pants'}
-let products: {title:string, price?:number}[] = [product1, product2]
+// REST PARAMETERS
 
-products.push({title:'hat', price:15})
+// function sum(message:string, ...numbers:number[]):string{
+//     const doubled = numbers.map((num)=> num * 2)
+//     console.log(doubled);
+    
+
+//     let total = numbers.reduce((previous, current)=> {
+//         return previous + current
+//     },0)
+//     return `${message} ${total}`
+// }
+
+// let result = sum('The total is : ', 1,2,3,4,5)
+// console.log(result);
+
+
+function logMessage(message:string):void{
+    console.log(message);
+    
+}
+
+logMessage('Hello Typescript');
+
+// UNION TYPES AS FUNCTION PARAMETERS
+
+function processInput(input:string | number){
+    if(typeof input === 'number'){
+
+        console.log(input * 2);
+    } else {
+        console.log(input.toLowerCase());
+        
+    }
+
+}
+
+processInput(10)
+processInput('Hello')
