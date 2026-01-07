@@ -163,13 +163,11 @@
 // let scoreAfterPenalty = calculateScore(100, 15);
 // let scoreWithoutPenalty = calculateScore(300);
 
-
 // REST PARAMETERS
 
 // function sum(message:string, ...numbers:number[]):string{
 //     const doubled = numbers.map((num)=> num * 2)
 //     console.log(doubled);
-    
 
 //     let total = numbers.reduce((previous, current)=> {
 //         return previous + current
@@ -180,26 +178,46 @@
 // let result = sum('The total is : ', 1,2,3,4,5)
 // console.log(result);
 
-
-function logMessage(message:string):void{
-    console.log(message);
-    
+function logMessage(message: string): void {
+  console.log(message);
 }
 
-logMessage('Hello Typescript');
+logMessage("Hello Typescript");
 
 // UNION TYPES AS FUNCTION PARAMETERS
 
-function processInput(input:string | number){
-    if(typeof input === 'number'){
-
-        console.log(input * 2);
-    } else {
-        console.log(input.toLowerCase());
-        
-    }
-
+function processInput(input: string | number) {
+  if (typeof input === "number") {
+    console.log(input * 2);
+  } else {
+    console.log(input.toLowerCase());
+  }
 }
 
-processInput(10)
-processInput('Hello')
+processInput(10);
+processInput("Hello");
+
+// OBJECTS ANS PARAMETERS AND EXCESS PROPERTY CHECKS
+
+function createEmployee({ id }: { id: number }): {
+  id: number;
+  isActive: boolean;
+} {
+  return { id, isActive: id % 2 === 0 };
+}
+
+const first = createEmployee({ id: 1 });
+const second = createEmployee({ id: 2 });
+console.log(first, second);
+
+// ALTERNATIVE
+
+function createStudent(student:{id:number; name:string}): void{
+    console.log(`Welcome to the course ${student.name.toUpperCase()}`);
+    
+}
+
+const newStudent = {
+    id:5,
+    name:'Alice',
+}
