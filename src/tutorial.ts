@@ -178,46 +178,63 @@
 // let result = sum('The total is : ', 1,2,3,4,5)
 // console.log(result);
 
-function logMessage(message: string): void {
-  console.log(message);
-}
+// function logMessage(message: string): void {
+//   console.log(message);
+// }
 
-logMessage("Hello Typescript");
+// logMessage("Hello Typescript");
 
-// UNION TYPES AS FUNCTION PARAMETERS
+// // UNION TYPES AS FUNCTION PARAMETERS
 
-function processInput(input: string | number) {
-  if (typeof input === "number") {
-    console.log(input * 2);
-  } else {
-    console.log(input.toLowerCase());
-  }
-}
+// function processInput(input: string | number) {
+//   if (typeof input === "number") {
+//     console.log(input * 2);
+//   } else {
+//     console.log(input.toLowerCase());
+//   }
+// }
 
-processInput(10);
-processInput("Hello");
+// processInput(10);
+// processInput("Hello");
 
 // OBJECTS ANS PARAMETERS AND EXCESS PROPERTY CHECKS
 
-function createEmployee({ id }: { id: number }): {
-  id: number;
-  isActive: boolean;
-} {
-  return { id, isActive: id % 2 === 0 };
-}
+// function createEmployee({ id }: { id: number }): {
+//   id: number;
+//   isActive: boolean;
+// } {
+//   return { id, isActive: id % 2 === 0 };
+// }
 
-const first = createEmployee({ id: 1 });
-const second = createEmployee({ id: 2 });
-console.log(first, second);
+// const first = createEmployee({ id: 1 });
+// const second = createEmployee({ id: 2 });
+// console.log(first, second);
 
 // ALTERNATIVE
 
-function createStudent(student:{id:number; name:string}): void{
-    console.log(`Welcome to the course ${student.name.toUpperCase()}`);
+// function createStudent(student:{id:number; name:string}): void{
+//     console.log(`Welcome to the course ${student.name.toUpperCase()}`);
     
+// }
+
+// const newStudent = {
+//     id:5,
+//     name:'Alice',
+//     email: 'anna@gmail.com'
+// }
+
+// createStudent(newStudent)
+// createStudent({id:1, name:'bob', email:'bobo@gmail.com'}) // excess property check
+
+function processData(input:string | number, config:{reverse:boolean}={reverse:false}): string | number {
+ if(typeof input === 'number') {
+  return input * input
+ } else {
+  return config.reverse ? input.toUpperCase().split('').reverse().join(''):input.toUpperCase()
+ }
 }
 
-const newStudent = {
-    id:5,
-    name:'Alice',
-}
+console.log(processData(10))
+console.log(processData('Hello'))
+console.log(processData('Hello', {reverse: true}))
+;
