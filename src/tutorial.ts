@@ -214,7 +214,7 @@
 
 // function createStudent(student:{id:number; name:string}): void{
 //     console.log(`Welcome to the course ${student.name.toUpperCase()}`);
-    
+
 // }
 
 // const newStudent = {
@@ -226,15 +226,75 @@
 // createStudent(newStudent)
 // createStudent({id:1, name:'bob', email:'bobo@gmail.com'}) // excess property check
 
-function processData(input:string | number, config:{reverse:boolean}={reverse:false}): string | number {
- if(typeof input === 'number') {
-  return input * input
- } else {
-  return config.reverse ? input.toUpperCase().split('').reverse().join(''):input.toUpperCase()
- }
+// function processData(input:string | number, config:{reverse:boolean}={reverse:false}): string | number {
+//  if(typeof input === 'number') {
+//   return input * input
+//  } else {
+//   return config.reverse ? input.toUpperCase().split('').reverse().join(''):input.toUpperCase()
+//  }
+// }
+
+// console.log(processData(10))
+// console.log(processData('Hello'))
+// console.log(processData('Hello', {reverse: true}))
+// ;
+
+// TYPE ALIAS AND INTERSECTION TYPE
+
+type Employee = { id: number; name: string; department: string };
+type Manager = { id: number; name: string; employees: Employee[] };
+
+type Staff = Employee | Manager;
+
+function printStaffDetails(staff: Staff): void {
+  if ("employees" in staff) {
+    console.log(
+      `${staff.name} is a manager in the ${staff.employees.length} employees`
+    );
+  } else {
+    console.log(
+      `${staff.name} is an employee in the ${staff.department} department`
+    );
+  }
 }
 
-console.log(processData(10))
-console.log(processData('Hello'))
-console.log(processData('Hello', {reverse: true}))
-;
+const alice: Employee = { id: 1, name: "alice", department: "sales" };
+const steve: Employee = { id: 1, name: "steve", department: "HR" };
+
+const bob: Manager = { id: 1, name: "bobo", employees: [alice, steve] };
+
+
+printStaffDetails(alice)
+printStaffDetails(bob)
+
+// INTERSECTION TYPE
+
+type Book = {id:number, name:string, price:number}
+
+const book1:Book = {
+    id:1,
+    name: 'how to cook a dragon',
+    price: 15
+}
+
+const book2:Book = {
+    id:2,
+    name: 'secrets of the universe',
+    price: 18
+}
+
+const discountedBook:Book&{discount:number} = { // intersection => type &(discount:number)
+    id:3,
+    name: 'gnomes and where to find them',
+    price: 25,
+    discount: 0.15
+}
+
+// COMPUTED PROPERTIES IN TYPE ALIAS
+const propName = 'age'
+
+type Animal = {
+    [propName]: number
+}
+
+let tiger: Animal = {[propName]: 5}
