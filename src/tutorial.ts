@@ -241,60 +241,107 @@
 
 // TYPE ALIAS AND INTERSECTION TYPE
 
-type Employee = { id: number; name: string; department: string };
-type Manager = { id: number; name: string; employees: Employee[] };
+// type Employee = { id: number; name: string; department: string };
+// type Manager = { id: number; name: string; employees: Employee[] };
 
-type Staff = Employee | Manager;
+// type Staff = Employee | Manager;
 
-function printStaffDetails(staff: Staff): void {
-  if ("employees" in staff) {
-    console.log(
-      `${staff.name} is a manager in the ${staff.employees.length} employees`
-    );
-  } else {
-    console.log(
-      `${staff.name} is an employee in the ${staff.department} department`
-    );
-  }
-}
+// function printStaffDetails(staff: Staff): void {
+//   if ("employees" in staff) {
+//     console.log(
+//       `${staff.name} is a manager in the ${staff.employees.length} employees`
+//     );
+//   } else {
+//     console.log(
+//       `${staff.name} is an employee in the ${staff.department} department`
+//     );
+//   }
+// }
 
-const alice: Employee = { id: 1, name: "alice", department: "sales" };
-const steve: Employee = { id: 1, name: "steve", department: "HR" };
+// const alice: Employee = { id: 1, name: "alice", department: "sales" };
+// const steve: Employee = { id: 1, name: "steve", department: "HR" };
 
-const bob: Manager = { id: 1, name: "bobo", employees: [alice, steve] };
+// const bob: Manager = { id: 1, name: "bobo", employees: [alice, steve] };
 
 
-printStaffDetails(alice)
-printStaffDetails(bob)
+// printStaffDetails(alice)
+// printStaffDetails(bob)
 
 // INTERSECTION TYPE
 
-type Book = {id:number, name:string, price:number}
+// type Book = {id:number, name:string, price:number}
 
-const book1:Book = {
-    id:1,
-    name: 'how to cook a dragon',
-    price: 15
-}
+// const book1:Book = {
+//     id:1,
+//     name: 'how to cook a dragon',
+//     price: 15
+// }
 
-const book2:Book = {
-    id:2,
-    name: 'secrets of the universe',
-    price: 18
-}
+// const book2:Book = {
+//     id:2,
+//     name: 'secrets of the universe',
+//     price: 18
+// }
 
-const discountedBook:Book&{discount:number} = { // intersection => type &(discount:number)
-    id:3,
-    name: 'gnomes and where to find them',
-    price: 25,
-    discount: 0.15
-}
+// const discountedBook:Book&{discount:number} = { // intersection => type &(discount:number)
+//     id:3,
+//     name: 'gnomes and where to find them',
+//     price: 25,
+//     discount: 0.15
+// }
 
 // COMPUTED PROPERTIES IN TYPE ALIAS
-const propName = 'age'
+// const propName = 'age'
 
-type Animal = {
-    [propName]: number
+// type Animal = {
+//     [propName]: number
+// }
+
+// let tiger: Animal = {[propName]: 5}
+
+// INTERFACE FUNDAMENTALS
+
+interface Book {
+  readonly isbn: number;
+  title: string;
+  author: string;
+  genre?: string;
+  //method
+  printAuthor(): void
+  printTitle(message:string): string
+  printSomething: (someValue: number) => number;
 }
 
-let tiger: Animal = {[propName]: 5}
+const deepWork: Book = {
+  isbn: 123,
+  title: "Deep Work",
+  author: "Cal Newport",
+  genre: "Self-Help",
+  printAuthor(){
+    console.log(this.author);
+    
+  },
+  printTitle(message){
+    return `${message} ${this.title}`
+  },
+  // first option
+  // printSomething: function(someValue){
+  //   return someValue
+  // }
+  // second option
+  // printSomething:(someValue)=>{
+  //   console.log(deepWork.author);  
+  //   return someValue
+  // }
+  // third option
+  
+}
+
+console.log(deepWork.printSomething(10));
+
+
+
+
+deepWork.printAuthor()
+const result = deepWork.printTitle('this is an awesome book')
+console.log(result);
