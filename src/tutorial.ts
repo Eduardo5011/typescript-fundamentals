@@ -301,47 +301,79 @@
 
 // INTERFACE FUNDAMENTALS
 
-interface Book {
-  readonly isbn: number;
-  title: string;
-  author: string;
-  genre?: string;
-  //method
-  printAuthor(): void
-  printTitle(message:string): string
-  printSomething: (someValue: number) => number;
-}
+// interface Book {
+//   readonly isbn: number;
+//   title: string;
+//   author: string;
+//   genre?: string;
+//   //method
+//   printAuthor(): void
+//   printTitle(message:string): string
+//   printSomething: (someValue: number) => number;
+// }
 
-const deepWork: Book = {
-  isbn: 123,
-  title: "Deep Work",
-  author: "Cal Newport",
-  genre: "Self-Help",
-  printAuthor(){
-    console.log(this.author);
+// const deepWork: Book = {
+//   isbn: 123,
+//   title: "Deep Work",
+//   author: "Cal Newport",
+//   genre: "Self-Help",
+//   // printAuthor(){
+//   //   console.log(this.author);
     
-  },
-  printTitle(message){
-    return `${message} ${this.title}`
-  },
-  // first option
-  // printSomething: function(someValue){
-  //   return someValue
-  // }
-  // second option
-  // printSomething:(someValue)=>{
-  //   console.log(deepWork.author);  
-  //   return someValue
-  // }
-  // third option
-  
+//   // },
+//   printTitle(message){
+//     return `${message} ${this.title}`
+//   },
+//   // first option
+//   printSomething: function(someValue){
+//     return someValue
+//   },
+//   // second option
+//   // printSomething:(someValue)=>{
+//   //   console.log(deepWork.author);  
+//   //   return someValue
+//   // }
+//   // third option
+//   // printSomething(someValue){
+//   //   return someValue
+//   // }
+//   printAuthor: () => {
+//     console.log(deepWork.author);
+    
+//   }
+// }
+
+// console.log(deepWork.printSomething(10));
+// deepWork.printAuthor()
+
+
+
+
+// // deepWork.printAuthor()
+// // const result = deepWork.printTitle('this is an awesome book')
+// // console.log(result);
+
+// CHALLENGE
+
+interface Computer {
+  readonly id:number,
+  brand:string,
+  ram:number,
+  upgradeRam(increase:number): number
+  storage?: number
 }
 
-console.log(deepWork.printSomething(10));
+const laptop:Computer = {
+  id:1,
+  brand: 'random brand',
+  ram: 8,
+  upgradeRam(amount){
+    this.ram += amount
+    return this.ram
+  }
+}
 
+laptop.storage = 256
+console.log(laptop.upgradeRam(4));
 
-
-
-deepWork.printAuthor()
-const result = deepWork.printTitle('this is an awesome book')
-console.log(result);
+console.log(laptop);
