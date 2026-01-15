@@ -263,7 +263,6 @@
 
 // const bob: Manager = { id: 1, name: "bobo", employees: [alice, steve] };
 
-
 // printStaffDetails(alice)
 // printStaffDetails(bob)
 
@@ -319,7 +318,7 @@
 //   genre: "Self-Help",
 //   // printAuthor(){
 //   //   console.log(this.author);
-    
+
 //   // },
 //   printTitle(message){
 //     return `${message} ${this.title}`
@@ -330,7 +329,7 @@
 //   },
 //   // second option
 //   // printSomething:(someValue)=>{
-//   //   console.log(deepWork.author);  
+//   //   console.log(deepWork.author);
 //   //   return someValue
 //   // }
 //   // third option
@@ -339,15 +338,12 @@
 //   // }
 //   printAuthor: () => {
 //     console.log(deepWork.author);
-    
+
 //   }
 // }
 
 // console.log(deepWork.printSomething(10));
 // deepWork.printAuthor()
-
-
-
 
 // // deepWork.printAuthor()
 // // const result = deepWork.printTitle('this is an awesome book')
@@ -355,25 +351,139 @@
 
 // CHALLENGE
 
-interface Computer {
-  readonly id:number,
-  brand:string,
-  ram:number,
-  upgradeRam(increase:number): number
-  storage?: number
-}
+// interface Computer {
+//   readonly id:number,
+//   brand:string,
+//   ram:number,
+//   upgradeRam(increase:number): number
+//   storage?: number
+// }
 
-const laptop:Computer = {
-  id:1,
-  brand: 'random brand',
-  ram: 8,
-  upgradeRam(amount){
-    this.ram += amount
-    return this.ram
+// const laptop:Computer = {
+//   id:1,
+//   brand: 'random brand',
+//   ram: 8,
+//   upgradeRam(amount){
+//     this.ram += amount
+//     return this.ram
+//   }
+// }
+
+// laptop.storage = 256
+// console.log(laptop.upgradeRam(4));
+
+// console.log(laptop);
+
+// INTERFACE - ADVANCE
+
+// interface Person {
+//   name: string;
+//   getDetails(): string;
+// }
+
+// interface DogOwner {
+//   dogName: string;
+//   getDogDetails(): string;
+// }
+
+// interface Person {
+//   age: number;
+// }
+
+// const person: Person = {
+//   name: "Alice",
+//   age: 30,
+//   getDetails() {
+//     return `Name: ${this.name}, Age: ${this.age}`;
+//   },
+// };
+
+// interface Employee extends Person {
+//   employeeId: number;
+// }
+
+// const employee: Employee = {
+//   name: "Jane",
+//   age: 28,
+//   employeeId: 123,
+//   getDetails() {
+//     return `Name: ${this.name}, Age: ${this.age}, Employee ID : ${this.employeeId}`;
+//   },
+// };
+
+// console.log(employee.getDetails());
+
+// interface Manager extends Person, DogOwner {
+//   managePeople(): void;
+// }
+
+// const manager: Manager = {
+//   name: "Bob",
+//   age: 40,
+//   dogName: "Rex",
+//   getDetails() {
+//     return `Name: ${this.name}, Age: ${this.age} `;
+//   },
+//   getDogDetails() {
+//     return `Name: ${this.dogName}`;
+//   },
+//   managePeople() {
+//     console.log("Managing people...");
+//   },
+// };
+
+// manager.managePeople();
+
+// CHALLENGE
+
+function getEmployee(): Person | DogOwner | Manager {
+  const random = Math.random();
+
+  if (random < 0.33) {
+    return {
+      name: "john",
+    };
+  } else if (random < 0.66) {
+    return {
+      name: "sarah",
+      dogName: "rex",
+    };
+  }
+  else {
+    return {
+      name: "bob",
+      managePeople(){
+        console.log('managing people');
+      },
+      delegateTask(){
+        console.log('delegate people');
+      }
+    }
   }
 }
 
-laptop.storage = 256
-console.log(laptop.upgradeRam(4));
+interface Person {
+  name: string;
+}
 
-console.log(laptop);
+interface DogOwner extends Person {
+  dogName: string;
+}
+
+interface Manager extends Person {
+  managePeople(): void;
+  delegateTask(): void;
+}
+
+const employee: Person | DogOwner | Manager = getEmployee();
+console.log(employee);
+
+function isManager(obj: Person | DogOwner | Manager ): obj is Manager{
+  return 'managePeople' in obj
+}
+
+if(isManager(employee)){
+  employee.delegateTask()
+}
+
+
