@@ -436,54 +436,223 @@
 
 // CHALLENGE
 
-function getEmployee(): Person | DogOwner | Manager {
-  const random = Math.random();
+// function getEmployee(): Person | DogOwner | Manager {
+//   const random = Math.random();
 
-  if (random < 0.33) {
-    return {
-      name: "john",
-    };
-  } else if (random < 0.66) {
-    return {
-      name: "sarah",
-      dogName: "rex",
-    };
+//   if (random < 0.33) {
+//     return {
+//       name: "john",
+//     };
+//   } else if (random < 0.66) {
+//     return {
+//       name: "sarah",
+//       dogName: "rex",
+//     };
+//   }
+//   else {
+//     return {
+//       name: "bob",
+//       managePeople(){
+//         console.log('managing people');
+//       },
+//       delegateTask(){
+//         console.log('delegate people');
+//       }
+//     }
+//   }
+// }
+
+// interface Person {
+//   name: string;
+// }
+
+// interface DogOwner extends Person {
+//   dogName: string;
+// }
+
+// interface Manager extends Person {
+//   managePeople(): void;
+//   delegateTask(): void;
+// }
+
+// const employee: Person | DogOwner | Manager = getEmployee();
+// console.log(employee);
+
+// function isManager(obj: Person | DogOwner | Manager ): obj is Manager{
+//   return 'managePeople' in obj
+// }
+
+// if(isManager(employee)){
+//   employee.delegateTask()
+// }
+
+// TUPLES
+
+// let person: [string, number] = ['john', 25];
+
+// let date: [number, number, number] = [2024, 6, 15];
+
+// function getPerson(): [string, number] {
+//   return ['Alice', 30];
+
+// }
+// let randomPerson = getPerson();
+// console.log(randomPerson[0]);
+// console.log(randomPerson[1]);
+
+// let susan: [string, number?] = ['susan', 28];
+
+// ENUMS
+
+// enum ServerResponseStatus {
+//   Success = 'Success',
+//   Error = 'Error',
+// }
+
+// Object.values(ServerResponseStatus).forEach((value) => {
+//   if (typeof value === "number") {
+//     console.log(value);
+
+//   }
+// })
+
+// console.log(ServerResponseStatus);
+
+// interface ServerResponse {
+//   result: ServerResponseStatus;
+//   data: string[];
+// }
+
+// function getServerResponse(): ServerResponse {
+//   return {
+//     result: 200,
+//     data: ["first item", "second item"],
+//   };
+// }
+
+// const response: ServerResponseStatus = getServerResponse()
+// console.log(response);
+
+// CHALLENGE
+
+// enum UserRole {
+//   admin,
+//   Manager,
+//   Employee,
+// }
+
+// type User = {
+//   id: number;
+//   name: string;
+//   role: UserRole;
+//   contact: [string, string];
+// };
+
+// function createUser(user: User): User {
+//   return user;
+// }
+
+// const user: User = createUser({
+//   id: 1,
+//   name: "Ed doe",
+//   role: UserRole.admin,
+//   contact: ["Ed@gmail.com,", "123-456-7890"],
+// });
+
+// console.log(user);
+
+//Type Assertions, Type unknown, and Type Never
+
+// Assertion
+
+// let someValue: any = 'this is a string';
+
+// let strLength: number = (someValue as string).length;
+
+// type Bird = {
+//   name: string;
+// }
+
+// let birdString = '{"name": "Eagle"}';
+// let dogString = '{"breed": "Poodle"}';
+
+// let birdObject = JSON.parse(birdString);
+// let dogObject = JSON.parse(dogString);
+
+// let bird = birdObject as Bird;
+// let dog = dogObject as Bird;
+
+// console.log(bird.name);
+// console.log(dog.name);
+
+// TYPE UNKNOWN
+
+// let unknownValue: unknown;
+
+// unknownValue = "Hello, World!";
+// unknownValue = [1, 2, 3];
+// unknownValue = 41.33455;
+
+// if (typeof unknownValue === "number") {
+//   unknownValue.toFixed(2);
+// }
+
+// function runSomeCode() {
+//   const random = Math.random();
+//   if (random < 0.5) {
+//     throw new Error("This is an error...");
+//   } else {
+//     throw "some error";
+//   }
+// }
+
+// try {
+//   runSomeCode();
+// } catch (error) {
+//   if (error instanceof Error) {
+//     console.log(error.message);
+//   } else {
+//     console.log(error);
+//   }
+// }
+
+// TYPE NEVER
+
+type Theme = "light" | "dark";
+
+function checkTheme(theme: Theme): void {
+  if (theme === "light") {
+    console.log("light theme");
+    return;
   }
-  else {
-    return {
-      name: "bob",
-      managePeople(){
-        console.log('managing people');
-      },
-      delegateTask(){
-        console.log('delegate people');
-      }
-    }
+  if (theme === "dark") {
+    console.log("dark theme");
+    return;
   }
 }
 
-interface Person {
-  name: string;
+enum Color {
+  red,
+  blue,
+  green,
 }
 
-interface DogOwner extends Person {
-  dogName: string;
+function getColorName(color: Color) {
+  switch (color) {
+    case Color.red:
+      return "red";
+    case Color.blue:
+      return "blue";
+    case Color.green:
+      return "green";
+    default:
+      //at build time
+    let unexpectedColor:never = color
+      // at runtime
+        throw new Error(`unexpected color value: ${color}`);
+  }
 }
 
-interface Manager extends Person {
-  managePeople(): void;
-  delegateTask(): void;
-}
-
-const employee: Person | DogOwner | Manager = getEmployee();
-console.log(employee);
-
-function isManager(obj: Person | DogOwner | Manager ): obj is Manager{
-  return 'managePeople' in obj
-}
-
-if(isManager(employee)){
-  employee.delegateTask()
-}
-
+console.log(getColorName(Color.red));
+console.log(getColorName(Color.blue));
 
