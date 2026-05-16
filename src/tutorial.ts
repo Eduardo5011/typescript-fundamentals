@@ -618,41 +618,46 @@
 
 // TYPE NEVER
 
-type Theme = "light" | "dark";
+// type Theme = "light" | "dark";
 
-function checkTheme(theme: Theme): void {
-  if (theme === "light") {
-    console.log("light theme");
-    return;
-  }
-  if (theme === "dark") {
-    console.log("dark theme");
-    return;
-  }
-}
+// function checkTheme(theme: Theme): void {
+//   if (theme === "light") {
+//     console.log("light theme");
+//     return;
+//   }
+//   if (theme === "dark") {
+//     console.log("dark theme");
+//     return;
+//   }
+// }
 
-enum Color {
-  red,
-  blue,
-  green,
-}
+// enum Color {
+//   red,
+//   blue,
+//   green,
+// }
 
-function getColorName(color: Color) {
-  switch (color) {
-    case Color.red:
-      return "red";
-    case Color.blue:
-      return "blue";
-    case Color.green:
-      return "green";
-    default:
-      //at build time
-    let unexpectedColor:never = color
-      // at runtime
-        throw new Error(`unexpected color value: ${color}`);
-  }
-}
+// function getColorName(color: Color) {
+//   switch (color) {
+//     case Color.red:
+//       return "red";
+//     case Color.blue:
+//       return "blue";
+//     case Color.green:
+//       return "green";
+//     default:
+//       //at build time
+//     let unexpectedColor:never = color
+//       // at runtime
+//         throw new Error(`unexpected color value: ${color}`);
+//   }
+// }
 
-console.log(getColorName(Color.red));
-console.log(getColorName(Color.blue));
+// console.log(getColorName(Color.red));
+// console.log(getColorName(Color.blue));
 
+// ES^ MODULES
+import { something } from "./actions";
+const name = '';
+
+const susan = 'susan';
