@@ -656,8 +656,22 @@
 // console.log(getColorName(Color.red));
 // console.log(getColorName(Color.blue));
 
-// ES^ MODULES
-import { something } from "./actions";
-const name = '';
+// ES6 MODULES
 
-const susan = 'susan';
+import newStudent, { sayHello, person, type Student } from "./actions";
+
+
+sayHello('Typescript');
+console.log(newStudent);
+console.log(person);
+
+const anotherStudent: Student = {
+    name: 'bob',
+    age: 22,
+}
+
+console.log(anotherStudent);
+
+// TYPE GUARDING
+
+
