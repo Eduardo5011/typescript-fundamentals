@@ -658,20 +658,107 @@
 
 // ES6 MODULES
 
-import newStudent, { sayHello, person, type Student } from "./actions";
+// import newStudent, { sayHello, person, type Student } from "./actions";
 
 
-sayHello('Typescript');
-console.log(newStudent);
-console.log(person);
+// sayHello('Typescript');
+// console.log(newStudent);
+// console.log(person);
 
-const anotherStudent: Student = {
-    name: 'bob',
-    age: 22,
+// const anotherStudent: Student = {
+//     name: 'bob',
+//     age: 22,
+// }
+
+// console.log(anotherStudent);
+
+// // TYPE GUARDING
+
+// type ValueType = string | number | boolean;
+
+// let value: ValueType;
+// const random = Math.random();
+// value = random < 0.33 ? 'Hello' : random <0.66 ? 123.66 : true;
+
+// function checkValue(value:ValueType): void{
+//     if(typeof value === 'string'){
+//         console.log(value.toLowerCase());
+//         return;
+//     }
+//     if(typeof value === 'number'){
+//         console.log(value.toFixed(2));
+//         return;
+//     }
+//     console.log(`boolean : ${value}`);
+// }
+
+// checkValue(value);
+
+// Equality narrowing
+
+// type Dog = { type: 'dog'; name: string; bark: () => void };
+// type Cat = { type: 'cat'; name: string; meow: () => void };
+// type Animal = Dog | Cat
+
+// function makeSound(animal:Animal){
+//     if(animal.type === 'dog'){
+//         animal.bark();
+//     }
+//     else{
+//         animal.meow();
+//     }
+// }
+
+// function makeSound(animal:Animal){
+//     if('bark' in animal){
+//         animal.bark();
+//     }
+//     else{
+//         animal.meow();
+//     }
+// }
+
+// Truthy/Falsy guard
+
+// function printLength(str: string| null | undefined){
+//     if(str){
+//         console.log(str.length)
+//     }
+//     else{
+//         console.log('no string provided');
+//     }
+// }
+
+// printLength('Hello');
+// printLength('');
+// printLength(null);
+// printLength(undefined);
+// printLength();
+
+
+// Instance of type guard
+
+// try{
+//     throw new Error('This is an error');
+// }
+// catch (error){
+//     if(error instanceof Error){
+//         console.log(`Caught an error: ${error.message}`);
+//     }
+//     else{
+//         console.log('unknown error caught');
+//     }
+// }
+
+function checkInput(input:Date | string):string{
+    if(input instanceof Date){
+        return input.getDate().toString();
+    }
+    return input
 }
 
-console.log(anotherStudent);
+const year = checkInput(new Date());
+const random = checkInput('2020-05-05');
 
-// TYPE GUARDING
-
-
+console.log(year)
+console.log(random)
