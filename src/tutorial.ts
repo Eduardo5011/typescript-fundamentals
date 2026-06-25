@@ -660,7 +660,6 @@
 
 // import newStudent, { sayHello, person, type Student } from "./actions";
 
-
 // sayHello('Typescript');
 // console.log(newStudent);
 // console.log(person);
@@ -735,7 +734,6 @@
 // printLength(undefined);
 // printLength();
 
-
 // Instance of type guard
 
 // try{
@@ -750,15 +748,72 @@
 //     }
 // }
 
-function checkInput(input:Date | string):string{
-    if(input instanceof Date){
-        return input.getDate().toString();
-    }
-    return input
-}
+// function checkInput(input:Date | string):string{
+//     if(input instanceof Date){
+//         return input.getDate().toString();
+//     }
+//     return input
+// }
 
-const year = checkInput(new Date());
-const random = checkInput('2020-05-05');
+// const year = checkInput(new Date());
+// const random = checkInput('2020-05-05');
 
-console.log(year)
-console.log(random)
+// console.log(year)
+// console.log(random)
+
+// Instance of type guard part 2
+
+// type Student = {
+//   name: string;
+//   study: () => void;
+// };
+
+// type User = {
+//   name: string;
+//   login: () => void;
+// };
+
+// type Person = Student | User;
+
+// const randomPerson = (): Person => {
+//   return Math.random() < 0.5
+//     ? { name: "Alice", study: () => console.log("studying") }
+//     : { name: "Bob", login: () => console.log("Logging in") };
+// };
+
+// const person = randomPerson();
+
+// function isStudent(person: Person): person is Student {
+//   // return 'study' in person
+//   return (person as Student).study !== undefined;
+// }
+
+// if (isStudent(person)) {
+//   person.study();
+// } else {
+//   person.login();
+// }
+
+// INCREMENT / DECREMENT OPERATORS
+
+type incrementAction = {
+  amount: number;
+  timestamp: number;
+  user: string;
+};
+
+type decrementAction = {
+  amount: number;
+  timestamp: number;
+  user: string;
+};
+
+type Action = incrementAction | decrementAction;
+
+function reducer(state: number, action: Action) {}
+
+const newState = reducer(15, {
+  user: "John",
+  amount: 5,
+  timestamp: 123456,
+});
