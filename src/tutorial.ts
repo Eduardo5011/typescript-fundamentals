@@ -796,24 +796,138 @@
 
 // INCREMENT / DECREMENT OPERATORS
 
-type incrementAction = {
-  amount: number;
-  timestamp: number;
-  user: string;
-};
+// type incrementAction = {
+//   type: "increment";
+//   amount: number;
+//   timestamp: number;
+//   user: string;
+// };
 
-type decrementAction = {
-  amount: number;
-  timestamp: number;
-  user: string;
-};
+// type decrementAction = {
+//   type: "decrement";
+//   amount: number;
+//   timestamp: number;
+//   user: string;
+// };
 
-type Action = incrementAction | decrementAction;
+// type Action = incrementAction | decrementAction;
 
-function reducer(state: number, action: Action) {}
+// function reducer(state: number, action: Action) {
+//   switch (action.type) {
+//     case "increment":
+//       return state + action.amount;
+//     case "decrement":
+//       return state - action.amount;
+//     default:
+//       const unexpectedAction: never = action;
+//       throw new Error(`unexpected action : ${unexpectedAction}`);
+//   }
+// }
 
-const newState = reducer(15, {
-  user: "John",
-  amount: 5,
-  timestamp: 123456,
-});
+// const newState = reducer(15, {
+//   user: "John",
+//   type: "increment",
+//   amount: 5,
+//   timestamp: 123456,
+// });
+
+// GENERICS
+
+// let array1: string[] = ["apple", "banana", "cherry"];
+// let array2: number[] = [1, 2, 3];
+// let array3: boolean[] = [true, false, true];
+
+// function genericFunction<T>(arg:T):T {
+//   return arg;
+// }
+
+// const someStringValue = genericFunction<string>('Hello World');
+// const someNumberValue = genericFunction<number>(2);
+
+// interface GenericInterface<T>{
+//   value:T;
+//   getValue: ()=> T;
+// }
+
+// const genericString: GenericInterface<string> = {
+//   value: 'Hello World',
+//   getValue(){
+//     return this.value;
+//   }
+// }
+
+// async function someFunc(): Promise<string> {
+//   return 'Hello World';
+// }
+
+// const result = someFunc();
+
+// function generateStringArray(length: number, value: string): string[] {
+//   let result: string[] = [];
+//   result = Array(length).fill(value);
+//   return result;
+// }
+// function createArray<T>(length: number, value: T): Array<T> {
+//   let result: T[] = [];
+//   result = Array(length).fill(value);
+//   return result;
+// }
+
+// let arrayStrings = createArray<string>(5, "Hello");
+// let arrayNumbers = createArray<number>(15, 100);
+
+// console.log(arrayStrings);
+// console.log(arrayNumbers);
+
+// function pair<T, U>(param1: T, param2: U): [T,U]{
+//   return [param1, param2]
+// }
+
+// let result = pair<number, string>(123, 'Hello');
+
+// function processValue<T extends string | number>(value:T):T{
+//   console.log(value);
+//   return value;
+// }
+
+// processValue('Hello World');
+// processValue(12);
+
+// type Car = {
+//   brand: string;
+//   model: string;
+
+// }
+
+// const car: Car = {
+//   brand: 'Toyota',
+//   model: 'Camry'
+// }
+
+// type Product = {
+//   name: string;
+//   price: number;
+// }
+
+// const product: Product = {
+//   name: 'Laptop',
+//   price: 1000
+// }
+
+// type Student = {
+//   name: string;
+//   age: number;
+// }
+
+// const student: Student = {
+//   name: 'John',
+//   age: 20
+// }
+
+// function printName<T extends {name: string}>(input: T): void{
+//   console.log(input.name);
+// }
+
+// printName(student);
+// printName(product);
+
