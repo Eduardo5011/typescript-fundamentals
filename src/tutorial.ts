@@ -933,37 +933,50 @@
 
 // FETCH DATA AND DECLARATION
 
-import {z} from 'zod';
+// import {z} from 'zod';
 
-const url = "https://www.course-api.com/react-tours-project";
+// const url = "https://www.course-api.com/react-tours-project";
 
-type Tour = {
-    id: string;
-    name: string;
-    info: string;
-    image: string;
-    price: string;
-}
+// const tourSchema = z.object({
+//     id: z.string(),
+//     name: z.string(),
+//     info: z.string(),
+//     image: z.string(),
+//     price: z.string()
+// })
 
-async function fetchData(url: string): Promise<Tour[]> {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data: Tour[] = await response.json();
+// type Tour = z.infer<typeof tourSchema>;
+
+// async function fetchData(url: string): Promise<Tour[]> {
+//   try {
+//     const response = await fetch(url);
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! status: ${response.status}`);
+//     }
+//     const rawData: Tour[] = await response.json();
+
+//     const result = tourSchema.array().safeParse(rawData);
     
-    return data;
-  } catch (error) {
-    const errorMsg =
-      error instanceof Error ? error.message : "there was an error";
-      console.error(errorMsg);
-      return [];
-  }
-}
+    
+//     if(!result.success){
+//         throw new Error(`Invalid data: ${result.error}`);
+//     }
 
-const tours = await fetchData(url);
-tours.map((tour)=> {
-    console.log(tour.name);
-})
+    
+//     return result.data;
+//   } catch (error) {
+//     const errorMsg =
+//       error instanceof Error ? error.message : "there was an error";
+//       console.error(errorMsg);
+//       return [];
+//   }
+// }
 
+// const tours = await fetchData(url);
+// tours.map((tour)=> {
+//     console.log(tour.name)
+// })
+
+import bcryptjs from 'bcryptjs';
+
+bcryptjs.
