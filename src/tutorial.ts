@@ -956,13 +956,11 @@
 //     const rawData: Tour[] = await response.json();
 
 //     const result = tourSchema.array().safeParse(rawData);
-    
-    
+
 //     if(!result.success){
 //         throw new Error(`Invalid data: ${result.error}`);
 //     }
 
-    
 //     return result.data;
 //   } catch (error) {
 //     const errorMsg =
@@ -977,6 +975,92 @@
 //     console.log(tour.name)
 // })
 
-import bcryptjs from 'bcryptjs';
+// CLASSES
 
-bcryptjs.
+// class Book {
+//     public readonly title: string;
+//     public author: string;
+//     private checkedOut: boolean = false;
+
+//     constructor(title: string, author: string) {
+//         this.title = title;
+//         this.author = author;
+
+//     }
+//     public checkOut(){
+//         this.checkedOut = this.toggleCheckedOutStatus();
+//     }
+//     public isCheckedOut(){
+//         return this.checkedOut;
+//     }
+//     private toggleCheckedOutStatus(){
+//         return !this.checkedOut;
+//     }
+// }
+
+// const deepWork = new Book('Deep Work', 'Cal Newport');
+// deepWork.checkOut();
+// deepWork.checkOut();
+// console.log(deepWork.isCheckedOut());
+
+// SHORTCUT
+
+// class Book {
+//   private checkedOut: boolean = false;
+
+//   constructor(
+//     readonly title: string,
+//     public author: string,
+//     private someValue: number,
+//   ) {}
+//   public getSomeValue() {
+//     return this.someValue;
+//   }
+// }
+
+// const deepWork = new Book("Deep Work", "Cal Newport", 45);
+
+// console.log(deepWork.getSomeValue());
+
+
+// GETTERS AND SETTERS
+
+// class Book {
+//   private checkedOut: boolean = false;
+//   constructor(readonly title: string, public author: string) {}
+
+//   get info(){
+//     return `${this.title} by ${this.author}`
+//   }
+//   set checkOut(checkedOut: boolean){
+//     this.checkedOut = checkedOut
+//   }
+ 
+// }
+
+// const deepWork = new Book("Deep Work", "Cal Newport");
+
+// console.log(deepWork.info);
+// deepWork.checkOut = true;
+// console.log(deepWork)
+
+
+//CLASS W/ INTERFACES
+
+interface IPerson {
+  name: string;
+  age: number;
+  greet(): void;
+}
+
+class Person implements IPerson {
+    constructor(public name:string, public age:number) {
+        
+    }
+    greet(): void {
+        console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+    }
+}
+
+const hipster = new Person('John', 30);
+hipster.greet();
